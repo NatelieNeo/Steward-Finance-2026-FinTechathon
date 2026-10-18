@@ -1,0 +1,2483 @@
+[
+  {
+    "id": 32,
+    "action_type": "set_budget",
+    "params": {
+      "category": "Travel",
+      "monthly_limit_cents": 10000
+    },
+    "summary": "Set Travel budget to S$100.00/month",
+    "amount_cents": null,
+    "risk": "R1",
+    "status": "denied",
+    "decision": "deny",
+    "reasons": [
+      "The agent is frozen (kill switch is on)."
+    ],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": false,
+        "on_fail": "deny",
+        "detail": "The agent is frozen (kill switch is on)."
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "",
+    "origin": "insight",
+    "result": null,
+    "created_on": "2026-11-15",
+    "executed_on": null,
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:20.620481"
+  },
+  {
+    "id": 30,
+    "action_type": "transfer_to_savings",
+    "params": {
+      "amount_cents": 2000000,
+      "from_account_id": 1,
+      "to_account_id": 2,
+      "goal_id": null,
+      "memo": ""
+    },
+    "summary": "Move S$20,000.00 from Everyday Spending to Rainy-Day Savings",
+    "amount_cents": 2000000,
+    "risk": "R2",
+    "status": "denied",
+    "decision": "deny",
+    "reasons": [
+      "Single agent actions are capped at S$10,000.00 regardless of settings.",
+      "Everyday Spending has insufficient funds.",
+      "Would leave S$-17,617.15, below your S$1,000.00 safety floor.",
+      "S$20,000.00 is above the per-action limit of S$500.00.",
+      "Would exceed today's agent limit of S$1,000.00 (S$0.00 already moved).",
+      "Would exceed this month's agent limit of S$3,000.00."
+    ],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_destination_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "distinct_accounts",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": false,
+        "on_fail": "deny",
+        "detail": "Single agent actions are capped at S$10,000.00 regardless of settings."
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": false,
+        "on_fail": "deny",
+        "detail": "Everyday Spending has insufficient funds."
+      },
+      {
+        "name": "balance_floor",
+        "passed": false,
+        "on_fail": "deny",
+        "detail": "Would leave S$-17,617.15, below your S$1,000.00 safety floor."
+      },
+      {
+        "name": "per_action_limit",
+        "passed": false,
+        "on_fail": "approval",
+        "detail": "S$20,000.00 is above the per-action limit of S$500.00."
+      },
+      {
+        "name": "daily_limit",
+        "passed": false,
+        "on_fail": "approval",
+        "detail": "Would exceed today's agent limit of S$1,000.00 (S$0.00 already moved)."
+      },
+      {
+        "name": "monthly_limit",
+        "passed": false,
+        "on_fail": "approval",
+        "detail": "Would exceed this month's agent limit of S$3,000.00."
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "abuse test",
+    "origin": "insight",
+    "result": null,
+    "created_on": "2026-11-15",
+    "executed_on": null,
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:19.141583"
+  },
+  {
+    "id": 29,
+    "action_type": "buy_investment",
+    "params": {
+      "amount_cents": "100000"
+    },
+    "summary": "Refused: buy_investment",
+    "amount_cents": null,
+    "risk": "R4",
+    "status": "denied",
+    "decision": "deny",
+    "reasons": [
+      "Trading or investing is outside this assistant's mandate."
+    ],
+    "checks": [
+      {
+        "name": "prohibited_action",
+        "passed": false,
+        "on_fail": "deny",
+        "detail": "Trading or investing is outside this assistant's mandate."
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "abuse test",
+    "origin": "insight",
+    "result": null,
+    "created_on": "2026-11-15",
+    "executed_on": null,
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:19.104499"
+  },
+  {
+    "id": 28,
+    "action_type": "withdraw_cash",
+    "params": {
+      "amount_cents": "50000"
+    },
+    "summary": "Refused: withdraw_cash",
+    "amount_cents": null,
+    "risk": "R4",
+    "status": "denied",
+    "decision": "deny",
+    "reasons": [
+      "Cash withdrawals are never delegated to the agent."
+    ],
+    "checks": [
+      {
+        "name": "prohibited_action",
+        "passed": false,
+        "on_fail": "deny",
+        "detail": "Cash withdrawals are never delegated to the agent."
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "abuse test",
+    "origin": "insight",
+    "result": null,
+    "created_on": "2026-11-15",
+    "executed_on": null,
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:19.067101"
+  },
+  {
+    "id": 27,
+    "action_type": "transfer_to_savings",
+    "params": {
+      "amount_cents": 80000,
+      "from_account_id": 1,
+      "to_account_id": 2,
+      "goal_id": null,
+      "memo": ""
+    },
+    "summary": "Move S$800.00 from Everyday Spending to Rainy-Day Savings",
+    "amount_cents": 80000,
+    "risk": "R2",
+    "status": "rejected",
+    "decision": "require_approval",
+    "reasons": [
+      "S$800.00 is above the per-action limit of S$500.00."
+    ],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_destination_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "distinct_accounts",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": false,
+        "on_fail": "approval",
+        "detail": "S$800.00 is above the per-action limit of S$500.00."
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": true,
+    "rationale": "injected",
+    "origin": "chat",
+    "result": {
+      "note": "Cancelled by kill switch."
+    },
+    "created_on": "2026-11-15",
+    "executed_on": null,
+    "expires_on": "2026-11-17",
+    "created_at": "2026-10-16T08:39:19.016985"
+  },
+  {
+    "id": 26,
+    "action_type": "pay_bill",
+    "params": {
+      "bill_id": 999999,
+      "amount_cents": 50000,
+      "from_account_id": 1
+    },
+    "summary": "Pay S$500.00 to unknown biller",
+    "amount_cents": 50000,
+    "risk": "R3",
+    "status": "denied",
+    "decision": "deny",
+    "reasons": [
+      "Bill not found in your account."
+    ],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_bill",
+        "passed": false,
+        "on_fail": "deny",
+        "detail": "Bill not found in your account."
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "injected",
+    "origin": "chat",
+    "result": null,
+    "created_on": "2026-11-15",
+    "executed_on": null,
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:18.993910"
+  },
+  {
+    "id": 25,
+    "action_type": "change_agent_limits",
+    "params": {
+      "per_action_limit": "10000"
+    },
+    "summary": "Refused: change_agent_limits",
+    "amount_cents": null,
+    "risk": "R4",
+    "status": "denied",
+    "decision": "deny",
+    "reasons": [
+      "The agent cannot change its own permissions or limits."
+    ],
+    "checks": [
+      {
+        "name": "prohibited_action",
+        "passed": false,
+        "on_fail": "deny",
+        "detail": "The agent cannot change its own permissions or limits."
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "injected",
+    "origin": "chat",
+    "result": null,
+    "created_on": "2026-11-15",
+    "executed_on": null,
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:18.966812"
+  },
+  {
+    "id": 24,
+    "action_type": "add_payee",
+    "params": {
+      "name": "Mallory",
+      "account": "999-999"
+    },
+    "summary": "Refused: add_payee",
+    "amount_cents": null,
+    "risk": "R4",
+    "status": "denied",
+    "decision": "deny",
+    "reasons": [
+      "Adding payees changes who can receive your money; only you can do that."
+    ],
+    "checks": [
+      {
+        "name": "prohibited_action",
+        "passed": false,
+        "on_fail": "deny",
+        "detail": "Adding payees changes who can receive your money; only you can do that."
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "injected",
+    "origin": "chat",
+    "result": null,
+    "created_on": "2026-11-15",
+    "executed_on": null,
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:18.939945"
+  },
+  {
+    "id": 23,
+    "action_type": "external_transfer",
+    "params": {
+      "to": "012-345678-9",
+      "amount_cents": "50000"
+    },
+    "summary": "Refused: external_transfer",
+    "amount_cents": null,
+    "risk": "R4",
+    "status": "denied",
+    "decision": "deny",
+    "reasons": [
+      "Sending money to people or new accounts is never delegated to the agent."
+    ],
+    "checks": [
+      {
+        "name": "prohibited_action",
+        "passed": false,
+        "on_fail": "deny",
+        "detail": "Sending money to people or new accounts is never delegated to the agent."
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "injected",
+    "origin": "chat",
+    "result": null,
+    "created_on": "2026-11-15",
+    "executed_on": null,
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:18.913946"
+  },
+  {
+    "id": 22,
+    "action_type": "pay_bill",
+    "params": {
+      "bill_id": 19,
+      "amount_cents": 15225,
+      "from_account_id": 1
+    },
+    "summary": "Pay S$152.25 to SP Group (2026-11 bill, due 17 Nov)",
+    "amount_cents": 15225,
+    "risk": "R3",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_bill",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_payable",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_verified",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_allowlisted",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "not_overpaying",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "matches_statement",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_audit_clean",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "SP Group bill of S$152.25 is due 17 Nov. Bill audit clean.",
+    "origin": "cycle",
+    "result": {
+      "txn_id": 690,
+      "bill_id": 19,
+      "paid_on": "2026-11-14",
+      "on_time": true
+    },
+    "created_on": "2026-11-14",
+    "executed_on": "2026-11-14",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:18.763659"
+  },
+  {
+    "id": 21,
+    "action_type": "transfer_to_savings",
+    "params": {
+      "amount_cents": 43000,
+      "from_account_id": 1,
+      "to_account_id": 2,
+      "goal_id": 1,
+      "memo": ""
+    },
+    "summary": "Move S$430.00 from Everyday Spending to Rainy-Day Savings for Emergency Fund",
+    "amount_cents": 43000,
+    "risk": "R2",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_destination_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "distinct_accounts",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_goal",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Forecast keeps your balance above the S$1,000.00 floor even on a pessimistic path; moving S$430.00 to Emergency Fund.",
+    "origin": "cycle",
+    "result": {
+      "debit_txn": 671,
+      "credit_txn": 672,
+      "new_source_balance_cents": 279994
+    },
+    "created_on": "2026-11-09",
+    "executed_on": "2026-11-09",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:18.481960"
+  },
+  {
+    "id": 20,
+    "action_type": "transfer_to_savings",
+    "params": {
+      "amount_cents": 50000,
+      "from_account_id": 1,
+      "to_account_id": 2,
+      "goal_id": 1,
+      "memo": ""
+    },
+    "summary": "Move S$500.00 from Everyday Spending to Rainy-Day Savings for Emergency Fund",
+    "amount_cents": 50000,
+    "risk": "R2",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_destination_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "distinct_accounts",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_goal",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Forecast keeps your balance above the S$1,000.00 floor even on a pessimistic path; moving S$500.00 to Emergency Fund.",
+    "origin": "cycle",
+    "result": {
+      "debit_txn": 648,
+      "credit_txn": 649,
+      "new_source_balance_cents": 377340
+    },
+    "created_on": "2026-11-02",
+    "executed_on": "2026-11-02",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:18.101076"
+  },
+  {
+    "id": 19,
+    "action_type": "transfer_to_savings",
+    "params": {
+      "amount_cents": 50000,
+      "from_account_id": 1,
+      "to_account_id": 2,
+      "goal_id": 1,
+      "memo": ""
+    },
+    "summary": "Move S$500.00 from Everyday Spending to Rainy-Day Savings for Emergency Fund",
+    "amount_cents": 50000,
+    "risk": "R2",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_destination_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "distinct_accounts",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_goal",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Forecast keeps your balance above the S$1,000.00 floor even on a pessimistic path; moving S$500.00 to Emergency Fund.",
+    "origin": "cycle",
+    "result": {
+      "debit_txn": 628,
+      "credit_txn": 629,
+      "new_source_balance_cents": 596887
+    },
+    "created_on": "2026-10-26",
+    "executed_on": "2026-10-26",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:17.733273"
+  },
+  {
+    "id": 18,
+    "action_type": "pay_bill",
+    "params": {
+      "bill_id": 17,
+      "amount_cents": 5125,
+      "from_account_id": 1
+    },
+    "summary": "Pay S$51.25 to Singtel (2026-10 bill, due 20 Oct)",
+    "amount_cents": 5125,
+    "risk": "R3",
+    "status": "executed",
+    "decision": "require_approval",
+    "reasons": [
+      "The bill audit found items that need a human look (spike, new charges or fees)."
+    ],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_bill",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_payable",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_verified",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_allowlisted",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "not_overpaying",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "matches_statement",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_audit_clean",
+        "passed": false,
+        "on_fail": "approval",
+        "detail": "The bill audit found items that need a human look (spike, new charges or fees)."
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Singtel bill of S$51.25 is due 20 Oct. New line item: Premium SMS service (VAS)",
+    "origin": "cycle",
+    "result": {
+      "txn_id": 630,
+      "bill_id": 17,
+      "paid_on": "2026-10-26",
+      "on_time": false
+    },
+    "created_on": "2026-10-26",
+    "executed_on": "2026-10-26",
+    "expires_on": "2026-10-28",
+    "created_at": "2026-10-16T08:39:17.707034"
+  },
+  {
+    "id": 17,
+    "action_type": "pay_bill",
+    "params": {
+      "bill_id": 18,
+      "amount_cents": 3990,
+      "from_account_id": 1
+    },
+    "summary": "Pay S$39.90 to StarHub Broadband (2026-10 bill, due 26 Oct)",
+    "amount_cents": 3990,
+    "risk": "R3",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_bill",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_payable",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_verified",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_allowlisted",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "not_overpaying",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "matches_statement",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_audit_clean",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "StarHub Broadband bill of S$39.90 is due 26 Oct. Bill audit clean.",
+    "origin": "cycle",
+    "result": {
+      "txn_id": 621,
+      "bill_id": 18,
+      "paid_on": "2026-10-23",
+      "on_time": true
+    },
+    "created_on": "2026-10-23",
+    "executed_on": "2026-10-23",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:17.549354"
+  },
+  {
+    "id": 16,
+    "action_type": "pay_bill",
+    "params": {
+      "bill_id": 17,
+      "amount_cents": 5125,
+      "from_account_id": 1
+    },
+    "summary": "Pay S$51.25 to Singtel (2026-10 bill, due 20 Oct)",
+    "amount_cents": 5125,
+    "risk": "R3",
+    "status": "expired",
+    "decision": "require_approval",
+    "reasons": [
+      "The bill audit found items that need a human look (spike, new charges or fees)."
+    ],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_bill",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_payable",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_verified",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_allowlisted",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "not_overpaying",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "matches_statement",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_audit_clean",
+        "passed": false,
+        "on_fail": "approval",
+        "detail": "The bill audit found items that need a human look (spike, new charges or fees)."
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Singtel bill of S$51.25 is due 20 Oct. New line item: Premium SMS service (VAS)",
+    "origin": "cycle",
+    "result": null,
+    "created_on": "2026-10-23",
+    "executed_on": null,
+    "expires_on": "2026-10-25",
+    "created_at": "2026-10-16T08:39:17.527536"
+  },
+  {
+    "id": 15,
+    "action_type": "pay_bill",
+    "params": {
+      "bill_id": 17,
+      "amount_cents": 5125,
+      "from_account_id": 1
+    },
+    "summary": "Pay S$51.25 to Singtel (2026-10 bill, due 20 Oct)",
+    "amount_cents": 5125,
+    "risk": "R3",
+    "status": "expired",
+    "decision": "require_approval",
+    "reasons": [
+      "The bill audit found items that need a human look (spike, new charges or fees)."
+    ],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_bill",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_payable",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_verified",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_allowlisted",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "not_overpaying",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "matches_statement",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_audit_clean",
+        "passed": false,
+        "on_fail": "approval",
+        "detail": "The bill audit found items that need a human look (spike, new charges or fees)."
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Singtel bill of S$51.25 is due 20 Oct. New line item: Premium SMS service (VAS)",
+    "origin": "cycle",
+    "result": null,
+    "created_on": "2026-10-20",
+    "executed_on": null,
+    "expires_on": "2026-10-22",
+    "created_at": "2026-10-16T08:39:17.399425"
+  },
+  {
+    "id": 14,
+    "action_type": "transfer_to_savings",
+    "params": {
+      "amount_cents": 49000,
+      "from_account_id": 1,
+      "to_account_id": 2,
+      "goal_id": 1,
+      "memo": ""
+    },
+    "summary": "Move S$490.00 from Everyday Spending to Rainy-Day Savings for Emergency Fund",
+    "amount_cents": 49000,
+    "risk": "R2",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_destination_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "distinct_accounts",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_goal",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Forecast keeps your balance above the S$1,000.00 floor even on a pessimistic path; moving S$490.00 to Emergency Fund.",
+    "origin": "cycle",
+    "result": {
+      "debit_txn": 605,
+      "credit_txn": 606,
+      "new_source_balance_cents": 209288
+    },
+    "created_on": "2026-10-19",
+    "executed_on": "2026-10-19",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:17.312896"
+  },
+  {
+    "id": 13,
+    "action_type": "pay_bill",
+    "params": {
+      "bill_id": 17,
+      "amount_cents": 5125,
+      "from_account_id": 1
+    },
+    "summary": "Pay S$51.25 to Singtel (2026-10 bill, due 20 Oct)",
+    "amount_cents": 5125,
+    "risk": "R3",
+    "status": "expired",
+    "decision": "require_approval",
+    "reasons": [
+      "The bill audit found items that need a human look (spike, new charges or fees)."
+    ],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_bill",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_payable",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_verified",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_allowlisted",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "not_overpaying",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "matches_statement",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_audit_clean",
+        "passed": false,
+        "on_fail": "approval",
+        "detail": "The bill audit found items that need a human look (spike, new charges or fees)."
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Singtel bill of S$51.25 is due 20 Oct. New line item: Premium SMS service (VAS)",
+    "origin": "cycle",
+    "result": null,
+    "created_on": "2026-10-17",
+    "executed_on": null,
+    "expires_on": "2026-10-19",
+    "created_at": "2026-10-16T08:39:17.210998"
+  },
+  {
+    "id": 12,
+    "action_type": "cancel_subscription",
+    "params": {
+      "merchant": "Netflix",
+      "reason": "Price increase"
+    },
+    "summary": "Cancel Netflix subscription",
+    "amount_cents": null,
+    "risk": "R3",
+    "status": "rejected",
+    "decision": "require_approval",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "subscription_active",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Netflix went from S$19.98 to S$22.98 per month on 08 Sep. That is S$36.00 more a year.",
+    "origin": "cycle",
+    "result": null,
+    "created_on": "2026-10-16",
+    "executed_on": null,
+    "expires_on": "2026-10-18",
+    "created_at": "2026-10-16T08:39:17.016920"
+  },
+  {
+    "id": 11,
+    "action_type": "dispute_charge",
+    "params": {
+      "transaction_id": 563,
+      "reason": "Duplicate charge"
+    },
+    "summary": "Dispute S$89.90 charge from Shopee on 07 Oct",
+    "amount_cents": 8990,
+    "risk": "R3",
+    "status": "executed",
+    "decision": "require_approval",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_transaction",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "is_debit",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "not_already_disputed",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Shopee charged S$89.90 on 07 Oct and again on 07 Oct. If you only bought once, dispute the second charge.",
+    "origin": "cycle",
+    "result": {
+      "dispute_id": 1,
+      "provisional_credit_txn": 595,
+      "amount_cents": 8990
+    },
+    "created_on": "2026-10-16",
+    "executed_on": "2026-10-16",
+    "expires_on": "2026-10-18",
+    "created_at": "2026-10-16T08:39:16.995177"
+  },
+  {
+    "id": 10,
+    "action_type": "pay_bill",
+    "params": {
+      "bill_id": 16,
+      "amount_cents": 18995,
+      "from_account_id": 1
+    },
+    "summary": "Pay S$189.95 to SP Group (2026-10 bill, due 17 Oct)",
+    "amount_cents": 18995,
+    "risk": "R3",
+    "status": "executed",
+    "decision": "require_approval",
+    "reasons": [
+      "The bill audit found items that need a human look (spike, new charges or fees)."
+    ],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_bill",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_payable",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_verified",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "payee_allowlisted",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "not_overpaying",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "matches_statement",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "bill_audit_clean",
+        "passed": false,
+        "on_fail": "approval",
+        "detail": "The bill audit found items that need a human look (spike, new charges or fees)."
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "SP Group bill of S$189.95 is due 17 Oct. Electricity usage 478 kWh @ S$0.2994/kWh up 38%; Total is 34% above your usual SP Group bill",
+    "origin": "cycle",
+    "result": {
+      "txn_id": 594,
+      "bill_id": 16,
+      "paid_on": "2026-10-16",
+      "on_time": true
+    },
+    "created_on": "2026-10-16",
+    "executed_on": "2026-10-16",
+    "expires_on": "2026-10-18",
+    "created_at": "2026-10-16T08:39:16.970537"
+  },
+  {
+    "id": 9,
+    "action_type": "transfer_to_savings",
+    "params": {
+      "amount_cents": 50000,
+      "from_account_id": 1,
+      "to_account_id": 2,
+      "goal_id": 1,
+      "memo": ""
+    },
+    "summary": "Move S$500.00 from Everyday Spending to Rainy-Day Savings for Emergency Fund",
+    "amount_cents": 50000,
+    "risk": "R2",
+    "status": "executed",
+    "decision": "require_approval",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_source_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_destination_account",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "distinct_accounts",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "owns_goal",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "positive_amount",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "hard_ceiling",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "sufficient_funds",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "balance_floor",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "per_action_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "daily_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "monthly_limit",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      },
+      {
+        "name": "velocity",
+        "passed": true,
+        "on_fail": "approval",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": true,
+    "rationale": "Forecast keeps your balance above the S$1,000.00 floor even on a pessimistic path; moving S$500.00 to Emergency Fund.",
+    "origin": "cycle",
+    "result": {
+      "debit_txn": 592,
+      "credit_txn": 593,
+      "new_source_balance_cents": 292000
+    },
+    "created_on": "2026-10-16",
+    "executed_on": "2026-10-16",
+    "expires_on": "2026-10-18",
+    "created_at": "2026-10-16T08:39:16.841240"
+  },
+  {
+    "id": 8,
+    "action_type": "set_budget",
+    "params": {
+      "category": "Insurance",
+      "monthly_limit_cents": 12000
+    },
+    "summary": "Set Insurance budget to S$120.00/month",
+    "amount_cents": null,
+    "risk": "R1",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Median monthly Insurance spend is S$120.00; Based on your median month.",
+    "origin": "cycle",
+    "result": {
+      "budget_id": 9,
+      "category": "Insurance",
+      "limit_cents": 12000
+    },
+    "created_on": "2026-10-16",
+    "executed_on": "2026-10-16",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:16.786510"
+  },
+  {
+    "id": 7,
+    "action_type": "set_budget",
+    "params": {
+      "category": "Health",
+      "monthly_limit_cents": 14000
+    },
+    "summary": "Set Health budget to S$140.00/month",
+    "amount_cents": null,
+    "risk": "R1",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Median monthly Health spend is S$138.54; Based on your median month.",
+    "origin": "cycle",
+    "result": {
+      "budget_id": 8,
+      "category": "Health",
+      "limit_cents": 14000
+    },
+    "created_on": "2026-10-16",
+    "executed_on": "2026-10-16",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:16.740832"
+  },
+  {
+    "id": 6,
+    "action_type": "set_budget",
+    "params": {
+      "category": "Subscriptions",
+      "monthly_limit_cents": 7000
+    },
+    "summary": "Set Subscriptions budget to S$70.00/month",
+    "amount_cents": null,
+    "risk": "R1",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Median monthly Subscriptions spend is S$61.90; Based on your median month.",
+    "origin": "cycle",
+    "result": {
+      "budget_id": 7,
+      "category": "Subscriptions",
+      "limit_cents": 7000
+    },
+    "created_on": "2026-10-16",
+    "executed_on": "2026-10-16",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:16.697315"
+  },
+  {
+    "id": 5,
+    "action_type": "set_budget",
+    "params": {
+      "category": "Transport",
+      "monthly_limit_cents": 12000
+    },
+    "summary": "Set Transport budget to S$120.00/month",
+    "amount_cents": null,
+    "risk": "R1",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Median monthly Transport spend is S$119.75; Based on your median month.",
+    "origin": "cycle",
+    "result": {
+      "budget_id": 6,
+      "category": "Transport",
+      "limit_cents": 12000
+    },
+    "created_on": "2026-10-16",
+    "executed_on": "2026-10-16",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:16.650513"
+  },
+  {
+    "id": 4,
+    "action_type": "set_budget",
+    "params": {
+      "category": "Groceries",
+      "monthly_limit_cents": 38000
+    },
+    "summary": "Set Groceries budget to S$380.00/month",
+    "amount_cents": null,
+    "risk": "R1",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Median monthly Groceries spend is S$375.07; Based on your median month.",
+    "origin": "cycle",
+    "result": {
+      "budget_id": 5,
+      "category": "Groceries",
+      "limit_cents": 38000
+    },
+    "created_on": "2026-10-16",
+    "executed_on": "2026-10-16",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:16.565231"
+  },
+  {
+    "id": 3,
+    "action_type": "set_budget",
+    "params": {
+      "category": "Utilities",
+      "monthly_limit_cents": 24000
+    },
+    "summary": "Set Utilities budget to S$240.00/month",
+    "amount_cents": null,
+    "risk": "R1",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Median monthly Utilities spend is S$232.50; Based on your median month.",
+    "origin": "cycle",
+    "result": {
+      "budget_id": 4,
+      "category": "Utilities",
+      "limit_cents": 24000
+    },
+    "created_on": "2026-10-16",
+    "executed_on": "2026-10-16",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:16.517995"
+  },
+  {
+    "id": 2,
+    "action_type": "set_budget",
+    "params": {
+      "category": "Housing",
+      "monthly_limit_cents": 150000
+    },
+    "summary": "Set Housing budget to S$1,500.00/month",
+    "amount_cents": null,
+    "risk": "R1",
+    "status": "executed",
+    "decision": "allow",
+    "reasons": [],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "Median monthly Housing spend is S$1,500.00; Based on your median month.",
+    "origin": "cycle",
+    "result": {
+      "budget_id": 3,
+      "category": "Housing",
+      "limit_cents": 150000
+    },
+    "created_on": "2026-10-16",
+    "executed_on": "2026-10-16",
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:16.471352"
+  },
+  {
+    "id": 1,
+    "action_type": "set_budget",
+    "params": {
+      "category": "Travel",
+      "monthly_limit_cents": 20000
+    },
+    "summary": "Set Travel budget to S$200.00/month",
+    "amount_cents": null,
+    "risk": "R1",
+    "status": "denied",
+    "decision": "deny",
+    "reasons": [
+      "Tier 0 (Observer) does not allow R1 actions like set_budget."
+    ],
+    "checks": [
+      {
+        "name": "kill_switch",
+        "passed": true,
+        "on_fail": "deny",
+        "detail": "ok"
+      },
+      {
+        "name": "tier_permits",
+        "passed": false,
+        "on_fail": "deny",
+        "detail": "Tier 0 (Observer) does not allow R1 actions like set_budget."
+      }
+    ],
+    "requires_step_up": false,
+    "rationale": "",
+    "origin": "insight",
+    "result": null,
+    "created_on": "2026-10-16",
+    "executed_on": null,
+    "expires_on": null,
+    "created_at": "2026-10-16T08:39:16.282976"
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "live": {
+    "audit_chain": {
+      "ok": true,
+      "entries": 136,
+      "first_bad_seq": null,
+      "problem": null,
+      "head_hash": "efb92b533f047bd20f18f4a9e03ae1c531ec4eabdd42c143c7a4cff030323667"
+    },
+    "ledger": {
+      "ok": true,
+      "accounts": [
+        {
+          "account_id": 1,
+          "name": "Everyday Spending",
+          "balance_cents": 238285,
+          "opening_cents": -225723,
+          "posted_sum_cents": 464008,
+          "consistent": true
+        },
+        {
+          "account_id": 2,
+          "name": "Rainy-Day Savings",
+          "balance_cents": 993490,
+          "opening_cents": 391038,
+          "posted_sum_cents": 602452,
+          "consistent": true
+        }
+      ]
+    }
+  },
+  "tamper_test": {
+    "edited_seq": 9,
+    "change": "amount_cents -> 1",
+    "verification": {
+      "ok": false,
+      "entries": 136,
+      "first_bad_seq": 9,
+      "problem": "entry contents do not match its hash",
+      "head_hash": "efb92b533f047bd20f18f4a9e03ae1c531ec4eabdd42c143c7a4cff030323667"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      - run: ruff check steward tests scripts
+      - run: pytest
+        env:
+          STEWARD_LLM_PROVIDER: offline
+      - name: Generate execution evidence
+        if: matrix.python == '3.12'
+        run: python scripts/run_demo_scenario.py
+      - uses: actions/upload-artifact@v4
+        if: matrix.python == '3.12'
+        with:
+          name: execution-evidence
+          path: |
+            evidence/*.md
+            evidence/*.json
+            evidence/*.jsonl
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t steward:ci .
