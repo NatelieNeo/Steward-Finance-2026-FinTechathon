@@ -4,7 +4,7 @@
 
 Most finance apps stop at charts. Steward is an AI agent that **acts**: it sets budgets, audits bills line by line, pays clean bills before they're late, sweeps spare cash into savings, disputes duplicate charges and cancels price-hiked subscriptions. It never acts beyond the **permission tier** the user grants. Every action passes a deterministic **policy engine** and is written to a **tamper-evident audit log**. The prototype runs on a **simulated core-banking sandbox**, so no real money moves.
 
-> **Repository:** `https://github.com/<your-org>/steward-finance` (replace once pushed)  ·  **Team:** _add names_
+> **Repository:** `https://github.com/NatelieNeo/Steward-Finance-2026-FinTechathon.git` **Team:** Chan Qing Kai, Neo Ru En Natelie
 
 ---
 
