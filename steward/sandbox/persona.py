@@ -52,7 +52,8 @@ def default_params(anchor: date) -> dict:
         "vas_from": (anchor - timedelta(days=12)).isoformat(),
         "roaming_bill_month": (add_months(anchor, -2)).strftime("%Y-%m"),
         "late_bill_month": (add_months(anchor, -3)).strftime("%Y-%m"),
-        "sp_spike_from": (anchor - timedelta(days=14)).isoformat(),
+        "sp_spike_from": (anchor.replace(day=3) if anchor.day >= 3
+                          else (anchor.replace(day=1) - timedelta(days=1)).replace(day=3)).isoformat(),
         "salary_cents": 520_000,
         "rent_cents": 150_000,
         "checking_target_cents": 342_000,

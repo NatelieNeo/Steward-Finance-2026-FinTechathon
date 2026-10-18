@@ -99,19 +99,23 @@ def seed_user(db: Session, user: User, seed: int, anchor: date) -> dict:
     memory: dict[str, str] = {}
     start = anchor - timedelta(days=HISTORY_DAYS)
     late_month = params["late_bill_month"]
+    latest_bill_issues = {}
+    for name, (issue_day, _days_to_pay, _category, _allowlisted) in BILLERS.items():
+        issue_month = anchor if anchor.day >= issue_day else add_months(anchor, -1)
+        latest_bill_issues[name] = issue_month.replace(day=issue_day)
     for d in daterange(start, anchor):
         for p in daily_postings(seed, d, params, cancelled=set(), history=True):
             _post(db, accts, p, d, "seed", history=True, memory=memory)
         _issue_bills(db, user, profile, d, payees)
-        # The user paid historical bills 4 days after issue (one Singtel bill late). Bills
-        # issued in the last 14 days stay open at the anchor date: they are the agent's job.
+        # Keep each biller's latest statement open for the agent; pay older history 4 days
+        # after issue (one Singtel bill late).
         open_bills = db.execute(
             select(Bill).where(Bill.user_id == user.id, Bill.status == "open", Bill.issued_on <= d)
         ).scalars().all()
         for bill in open_bills:
-            if (anchor - bill.issued_on).days < 14:
-                continue
             payee = db.get(Payee, bill.payee_id)
+            if bill.issued_on == latest_bill_issues[payee.name]:
+                continue
             paid_on = bill.issued_on + timedelta(days=4)
             if payee.name == "Singtel" and bill.period_label == late_month:
                 paid_on = bill.due_on + timedelta(days=5)
